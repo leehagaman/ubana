@@ -1,0 +1,46 @@
+
+# from https://github.com/uboone/ubsim/blob/e229c91ac192d73c84f6e997499194f4ce119bda/ubsim/EventWeight/jobs/numi/ppfx_numi_reweight_sept24_rhc.fcl
+
+reweight_numi_ppfx_rhc: {
+  weight_functions_ppfx: [
+    #ppfx_cv, ppfx_ms, 
+    ppfx_mipppi
+    #,
+    #ppfx_mippk, ppfx_thinmes, ppfx_thinpi,
+    #ppfx_other, ppfx_thinnpi, ppfx_totabs, ppfx_targatt, ppfx_thinna,
+    #ppfx_think, ppfx_thinn
+  ]
+  # USE ONLY WHEN WORKING FROM OLD FLUX FILES AND
+  # RUNNING WITH MODERN PPFX (TUNED TO G4.10.4)
+  # THIS REWEIGHTS THE OLD FLUX PREDICTION TO THE NEW G4 VERSION
+  # AND THEN CALCULATES THE MODERN PPFX WEIGHT
+  weight_functions_oldrw_ppfx: [ppfx_oldrw_cv, ppfx_oldrw_ms]
+
+  min_weight: 0
+  max_weight: 100
+
+  ppfx_mipppi: {
+    type: PPFXMIPPPion
+    random_seed: 3251
+    mode: multisim
+    number_of_multisims: 100
+    input_labels: [ "generator" ] #  [ "generator", "flux" ]
+    ppfx_mode:    "ubnumi" # "mipp_numi"
+    verbose:     0
+    horn_curr: "-200i"
+    target_config: "me000z"
+  }
+
+  #ppfx_mipppi: {
+  #  type: PPFXMIPPPion
+  #  random_seed: 3251
+  #  parameter_sigma: [ -3, -2, -1, 0, 1, 2, 3]
+  #  mode: multisigma
+  #  number_of_multisims: 7
+  #  input_labels: [ "generator", "flux" ]
+  #  ppfx_mode:    "ubnumi" # "mipp_numi"
+  #  verbose:     0
+  #  horn_curr: "-200i"
+  #  target_config: "me000z"
+  #}
+}
