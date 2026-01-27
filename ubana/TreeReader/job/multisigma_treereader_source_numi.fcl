@@ -1,7 +1,7 @@
 #include "services_microboone.fcl"
 #include "microboone_eventweight_service.fcl"
 #include "seedservice_microboone.fcl"
-#include "multisigma_eventweight_microboone_sep24_numi_rhc.fcl"
+#include "multisigma_eventweight_microboone_sep24_numi.fcl"
 
 process_name: TreeReader
 
